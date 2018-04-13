@@ -12,7 +12,7 @@ class Sender
             $result = Yii::$app->mailer->compose('/mailer/newslist', [
                 'newsList' => $newsList,
             ])
-                ->setFrom('dmitriy.mityashin@gmail.com')
+                ->setFrom('mail@gmail.com')
                 ->setTo($subscriber['email'])
                 ->setSubject('Mail subject')
                 ->send();

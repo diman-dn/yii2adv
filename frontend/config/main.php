@@ -15,6 +15,7 @@ return [
     'components' => [
         'request' => [
             'csrfParam' => '_csrf-frontend',
+            'enableCsrfValidation' => false, // Убрать в продакшене
         ],
         'user' => [
             'identityClass' => 'common\models\User',
