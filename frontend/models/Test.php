@@ -13,7 +13,7 @@ class Test
     public static function getNewsList($max)
     {
         $max = intval($max);
-        $sql = "select * from news where status = '1' limit $max";
+        $sql = "select * from news order by id desc limit $max";
 
         $result = Yii::$app->db->createCommand($sql)->queryAll();
 

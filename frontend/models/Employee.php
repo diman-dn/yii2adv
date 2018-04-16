@@ -51,4 +51,12 @@ class Employee extends Model
         return \Yii::$app->db->createCommand($sql)->execute();
     }
 
+    public static function getEmployeesList($max)
+    {
+        $max = intval($max);
+        $sql = "select first_name, last_name, `position`, start_date from employee order by salary desc limit $max";
+
+        return \Yii::$app->db->createCommand($sql)->queryAll();
+    }
+
 }

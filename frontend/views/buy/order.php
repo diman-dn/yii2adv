@@ -8,6 +8,7 @@
  * @var $windowSill
  * @var $email
  * @var $name
+ * View for email template
  */ ?>
 
 <h1 style="text-align: center">Новый заказ окна</h1>
