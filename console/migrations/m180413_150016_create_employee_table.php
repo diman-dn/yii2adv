@@ -23,7 +23,7 @@ class m180413_150016_create_employee_table extends Migration
             'start_date' => $this->string(11)->notNull(),
             'city' => $this->integer(11)->defaultValue(0),
             'position' => $this->string(255)->notNull(),
-            'id_code' => $this->integer(11)->notNull()->unique(),
+            'id_code' => $this->string(11)->notNull()->unique(),
         ]);
     }
 

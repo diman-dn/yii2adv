@@ -37,7 +37,18 @@ AppAsset::register($this);
     ]);
     $menuItems = [
         ['label' => 'Home', 'url' => ['/site/index']],
-        ['label' => 'News', 'url' => ['/test/index']],
+        ['label' => 'Options', 'options' => ['class' => 'dropdown'], 'items' => [
+            ['label' => 'News', 'url' => ['/test/index']],
+            ['label' => 'Employee', 'url' => ['/employee/index']],
+            ['label' => 'Buy window', 'url' => ['/buy/window']],
+            ['label' => 'Comments', 'url' => ['/comments/index']],
+            ['label' => 'Gallery', 'url' => ['/gallery/index']],
+            ['label' => 'Bookshop', 'url' => ['/bookshop/index'], 'options' => ['class' => 'submenu'], 'items' => [
+                ['label' => 'Authors', 'url' => ['/author/index']],
+                ['label' => 'Publishers', 'url' => ['/publisher/index']]
+
+            ]],
+        ]],
         ['label' => 'About', 'url' => ['/site/about']],
         ['label' => 'Contact', 'url' => ['/site/contact']],
     ];

@@ -1,5 +1,16 @@
 <?php
+    /* @var $this yii\web\View */
     /* @var $model frontend\models\Subscribe */
+
+    $this->title = 'Подписка на новости.';
+    $this->registerMetaTag([
+            'name' => 'description',
+        'content' => 'Description of the page...',
+    ]);
+
+    $this->params['breadcrumbs'] = [
+            'Подписка',
+    ];
 
     if ($model->hasErrors()) {
         echo "<div class='bg-danger'>";

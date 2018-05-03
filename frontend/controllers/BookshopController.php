@@ -1,0 +1,46 @@
+<?php
+
+namespace frontend\controllers;
+
+use yii\web\Controller;
+use frontend\models\Book;
+use Yii;
+use frontend\models\Publisher;
+
+class BookshopController extends Controller
+{
+    /**
+     * @return string
+     */
+    public function actionIndex()
+    {
+        $conditions = ['publisher_id' => 1];
+//        $bookList = Book::find()->where($conditions)->orderBy('date_published')->limit(2)->all();
+        $bookList = Book::find()->orderBy('date_published')->limit(20)->all();
+
+        return $this->render('index', [
+            'bookList' => $bookList,
+        ]);
+    }
+
+    /**
+     * @return string|\yii\web\Response
+     */
+    public function actionCreate()
+    {
+        $book = new Book();
+        $publishers = Publisher::getList();
+
+        if ($book->load(Yii::$app->request->post()) && $book->save()) {
+            Yii::$app->session->setFlash('success', 'Информация о новой книге была успешно добавлена!');
+//            return $this->redirect(['bookshop/index']);
+            return $this->refresh();
+        }
+
+        return $this->render('create', [
+            'book' => $book,
+            'publishers' => $publishers,
+        ]);
+    }
+
+}

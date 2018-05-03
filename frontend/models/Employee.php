@@ -3,6 +3,8 @@
 namespace frontend\models;
 
 use yii\base\Model;
+use Yii;
+use yii\helpers\ArrayHelper;
 
 class Employee extends Model
 {
@@ -57,6 +59,19 @@ class Employee extends Model
         $sql = "select first_name, last_name, `position`, start_date from employee order by salary desc limit $max";
 
         return \Yii::$app->db->createCommand($sql)->queryAll();
+    }
+
+    public static function find()
+    {
+        $sql = "select * from employee";
+        return Yii::$app->db->createCommand($sql)->queryAll();
+    }
+
+    public function getCitiesList()
+    {
+        $sql = "select * from city";
+        $result = Yii::$app->db->createCommand($sql)->queryAll();
+        return ArrayHelper::map($result, 'id', 'name');
     }
 
 }

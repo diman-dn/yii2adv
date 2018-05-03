@@ -1,6 +1,9 @@
 <?php
 /* @var $model frontend\models\Employee */
 
+use yii\widgets\ActiveForm;
+use yii\helpers\Html;
+
 if ($model->hasErrors()) {
     echo "<div class='bg-danger'>";
     foreach ($model->getErrors() as $error) {
@@ -9,39 +12,21 @@ if ($model->hasErrors()) {
     echo "</div>";
 }
 ?>
-<h1>Update your details</h1>
+<div class="container">
+    <br>
+    <br>
+    <h1>Update your details</h1>
 
-<form method="post">
-    <p>First name:</p>
-    <input type="text" name="firstName">
-    <br><br>
+    <?php $form = ActiveForm::begin(); ?>
 
-    <p>Last name:</p>
-    <input type="text" name="lastName">
-    <br><br>
+    <?= $form->field($model, 'firstName'); ?>
+    <?= $form->field($model, 'lastName'); ?>
+    <?= $form->field($model, 'middleName'); ?>
+    <?= $form->field($model, 'birthDate'); ?>
+    <?= $form->field($model, 'city')->dropDownList($model->getCitiesList()); ?>
+    <?= $form->field($model, 'position'); ?>
 
-    <p>Middle name:</p>
-    <input type="text" name="middleName">
-    <br><br>
+    <?= Html::submitButton('Update', ['class' => 'btn btn-primary']); ?>
 
-    <p>Birth date (YYYY-MM-DD):</p>
-    <input type="text" name="birthDate">
-    <br><br>
-
-    <p>City:</p>
-    <select type="text" name="city">
-        <option value="0">- Choose yor city -</option>
-        <option value="1">New York</option>
-        <option value="2">Los Angeles</option>
-        <option value="3">Boston</option>
-        <option value="4">Washington</option>
-        <option value="5">San Francisco</option>
-    </select>
-    <br><br>
-
-    <p>Position:</p>
-    <input type="text" name="position">
-    <br><br>
-
-    <input type="submit">
-</form>
+    <?php ActiveForm::end(); ?>
+</div>

@@ -11,7 +11,7 @@ class EmployeeController extends Controller
 
     public function actionIndex()
     {
-        echo "Index page is in progress!";
+        return $this->render('index');
     }
 
     public function actionRegister()
@@ -19,10 +19,7 @@ class EmployeeController extends Controller
         $model = new Employee();
         $model->scenario = Employee::SCENARIO_EMPLOYEE_REGISTER;
 
-        $formData = Yii::$app->request->post();
-
-        if (Yii::$app->request->isPost) {
-            $model->attributes = $formData;
+        if ($model->load(Yii::$app->request->post())) {
 
             if ($model->validate() && $model->save($model)) {
                 Yii::$app->session->setFlash('success', 'You are registered!');
@@ -40,10 +37,7 @@ class EmployeeController extends Controller
         $model = new Employee();
         $model->scenario = Employee::SCENARIO_EMPLOYEE_UPDATE;
 
-        $formData = Yii::$app->request->post();
-
-        if (Yii::$app->request->isPost) {
-            $model->attributes = $formData;
+        if ($model->load(Yii::$app->request->post())) {
 
             if ($model->validate() && $model->save()) {
                 Yii::$app->session->setFlash('success', 'Your information has been updated!');

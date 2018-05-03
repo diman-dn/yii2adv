@@ -43,7 +43,8 @@ return [
             'showScriptName' => false,
             'rules' => [
                 'news' => 'test/index',
-                'news/<id:\d+>' => 'test/view'
+                'news/<id:\d+>' => 'test/view',
+                'comments' => 'comments/index',
             ],
         ],
         'stringHelper' => [

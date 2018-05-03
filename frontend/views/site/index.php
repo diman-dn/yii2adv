@@ -5,7 +5,7 @@ use yii\helpers\Url;
 use frontend\widgets\newsList\NewsList;
 use frontend\widgets\employeeList\EmployeeList;
 
-$this->title = 'My Yii Application';
+$this->title = 'Yii2 Frontend';
 ?>
 <div class="site-index">
 
