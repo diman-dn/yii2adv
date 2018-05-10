@@ -12,6 +12,10 @@ $this->title = 'Yii2 Frontend';
   <div class="jumbotron">
     <h1>Congratulations!</h1>
 
+      <?php
+
+      ?>
+
     <p class="lead">You have successfully created your Yii-powered application.</p>
 
     <p><a class="btn btn-lg btn-success" href="<?= Url::to(['newsletter/subscribe']) ?>">Subscribe to newsletter</a></p>

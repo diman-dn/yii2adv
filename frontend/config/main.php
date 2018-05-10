@@ -18,7 +18,7 @@ return [
             'enableCsrfValidation' => false, // Убрать в продакшене
         ],
         'user' => [
-            'identityClass' => 'common\models\User',
+            'identityClass' => 'frontend\models\User',
             'enableAutoLogin' => true,
             'identityCookie' => ['name' => '_identity-frontend', 'httpOnly' => true],
         ],
@@ -45,6 +45,9 @@ return [
                 'news' => 'test/index',
                 'news/<id:\d+>' => 'test/view',
                 'comments' => 'comments/index',
+                'logout' => 'user/logout',
+                'login' => 'user/login',
+                'signup' => 'user/signup',
             ],
         ],
         'stringHelper' => [

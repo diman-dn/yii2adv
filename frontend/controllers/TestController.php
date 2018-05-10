@@ -3,38 +3,14 @@
 namespace frontend\controllers;
 
 use yii\web\Controller;
-use frontend\models\Test;
 use Yii;
+use Faker\Factory;
 
 class TestController extends Controller
 {
     /**
-     * @return string
+     * @return bool
      */
-    public function actionIndex()
-    {
-        $max = Yii::$app->params['maxNewsInList'];
-
-        $list = Test::getNewsList($max);
-
-        return $this->render('index', [
-            'list' => $list,
-        ]);
-    }
-
-    /**
-     * @param integer $id
-     * @return string
-     */
-    public function actionView($id)
-    {
-        $item = Test::getItem($id);
-
-        return $this->render('view', [
-            'item' => $item,
-        ]);
-    }
-
     public function actionMail()
     {
         $result = Yii::$app->mailer->compose()
@@ -45,8 +21,24 @@ class TestController extends Controller
             ->setHtmlBody('<b>Message text at the HTML format</b>')
             ->send();
 
-        var_dump($result);
-        die();
+        return $result;
+    }
+
+    public function actionGenerate()
+    {
+        /* @var $faker Faker/Generator */
+        $faker = Factory::create();
+
+        for ($j = 0; $j < 200; $j++) {
+            $news = [];
+            for ($i = 0; $i < 200; $i++) {
+                $news[] = [$faker->text(30, 45), $faker->text(rand(2000, 3000)), rand(0, 1)];
+            }
+            Yii::$app->db->createCommand()->batchInsert('news', ['title', 'content', 'status'], $news)->execute();
+            unset($news);
+        }
+
+        die('stop');
     }
 
 }
