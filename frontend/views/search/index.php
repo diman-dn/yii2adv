@@ -6,7 +6,7 @@ use yii\widgets\ActiveForm;
 use yii\helpers\Html;
 use frontend\helpers\HighlightHelper;
 ?>
-<h1>Search</h1>
+<h1>Search v2</h1>
 
 <div class="col-md-12">
 <?php $form = ActiveForm::begin(); ?>

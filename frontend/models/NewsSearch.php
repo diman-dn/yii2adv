@@ -2,10 +2,11 @@
 
 namespace frontend\models;
 
-use yii\base\Model;
+//use yii\base\Model;
 use Yii;
+use yii\helpers\ArrayHelper;
 
-class NewsSearch extends Model
+class NewsSearch
 {
 
     public function simpleSearch($keyword)
@@ -20,4 +21,28 @@ class NewsSearch extends Model
         return Yii::$app->db->createCommand($sql, ['keyword' => $keyword])->queryAll();
     }
 
+    public function advancedSearch($keyword)
+    {
+        $placeholders = [
+            ':keyword' => $keyword,
+        ];
+        // Название (idx_news_content) индекса из конфигурации сфинкса
+        $sql = "SELECT * FROM idx_news_content WHERE MATCH (:keyword) OPTION ranker=WORDCOUNT";
+        $data = Yii::$app->sphinx->createCommand($sql)->bindValues($placeholders)->queryAll();
+
+        $ids = ArrayHelper::map($data, 'id', 'id');
+        $data = News::find()->where(['id' => $ids])->asArray()->all();
+        $data = ArrayHelper::index($data, 'id');
+
+        $result = [];
+        foreach ($ids as $id) {
+            $result[] = [
+                'id' => $id,
+                'title' => $data[$id]['title'],
+                'content' => $data[$id]['content'],
+            ];
+        }
+
+        return $result;
+    }
 }
